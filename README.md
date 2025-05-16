@@ -38,6 +38,7 @@
 
 - start phantom training
   - similar to normal training but instead we use a partially poisoned dataset where dataset is created using generatePoisonSet.py
+    - run python generatePoisonSet.py to generate a zip file containing the train test poisoned data set of cifar10 as pkl files. It also split train into batches which is format used by the SSL repository.
     - we upload the poison data set into colab as zip file then unzip it: !unzip phantom_data.zip -d /content
     - we move data set to TorchSSL/phantom data: !mv phantom_data TorchSSL/phantom_data
     - specify to use poisoned data set for training: change the data_dir to ./phantom_data within the fixmatch of 40 labeled sample configuration file located at ./TorchSSL/config/fixmatch/fixmatch_cifar10_40_0.yaml
@@ -46,8 +47,9 @@
   - similar to resume of normal training we create directory to place the saved model
   - set up configuration file: change resume to True and specify the load_path. And specify to use the poisoned dataset within TorchSSL/phantom_data that we added into TorchSSL
 
-- to evaluate model on a clean test set use model_evaluation.y
+- to evaluate model on a clean test set run python model_evaluation.y
   - it's specify to load model named latest_model.pth that we upload to google colab
+  - the model has to be the resnet28-2 architecture. And saved as latest_model.pth
       
       
     
